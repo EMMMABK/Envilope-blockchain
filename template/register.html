@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <form method="POST" action="">
+        <input value="{{request.form.name}}"><label>Full Name</label>
+        <input value="{{request.form.email}}"><label>Email</label>
+        <input value="{{request.form.username}}"><label>Username</label>
+        <input value="{{request.form.password}}"><label>Password</label>
+        <input value="{{request.form.confirm}}"><label>Confirm Password</label>
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

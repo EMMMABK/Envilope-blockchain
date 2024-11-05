@@ -1,0 +1,14 @@
+{% include 'includes/_messages.html' %}
+<p>Current balance is {{ balance }}</p>
+{% from "includes/_formhelpers.html" import render_field %}
+<form action="" method="POST">
+    <div class="from_group">
+        {{ render_field(form.username, class="form-control") }}
+    </div>
+    <div class="from-group">
+        {{ render_field(form.amount, class="form-control" ) }}
+    </div>
+    <br>
+    <p><input type="submit" class="btn btn-primary" value="Send"></p>
+</form>
+<button onclick="window.location.href='/dashboard'">Dashboard</button>

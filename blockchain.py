@@ -10,14 +10,12 @@ def updatehash(*args):
     return h.hexdigest()
 
 class Block:
-    data = None
-    hash = None
-    nonce = 0
-    previous_hash = "0" * 64
 
-    def __init__(self, data, number=0):
+    def __init__(self, number=0, previous_hash="0"*64, data=None, nonce=0):
         self.data = data
         self.number = number
+        self.previous_hash = previous_hash
+        self.nonce = nonce
 
     def hash(self):
         return updatehash(
@@ -41,8 +39,8 @@ class Block:
 class Blockchain:
     difficulty = 5
 
-    def __init__(self, chain=[]):
-        self.chain = chain
+    def __init__(self):
+        self.chain = []
 
     def add(self, block):
         self.chain.append(block)
