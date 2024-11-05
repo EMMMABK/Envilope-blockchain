@@ -4,6 +4,7 @@ from flask_mysqldb import MySQL
 from sqlhelpers import *
 from passwords import _mysql_password
 from forms import *
+import time
 
 app = Flask(__name__)
 
@@ -103,7 +104,7 @@ def transaction():
         
         return redirect(url_for('transaction'))
 
-    return render_template("transaction.html", balance=balance, form=form)
+    return render_template("transaction.html", balance=balance, form=form, page="transaction")
 
 @app.route("/buy", methods = ['GET', 'POST'])
 @is_logged_in
@@ -120,12 +121,14 @@ def buy():
         
         return redirect(url_for('dashboard'))
 
-    return render_template('buy.html', balance=balance, form=form)
+    return render_template('buy.html', balance=balance, form=form, page="buy")
 
 @app.route("/dashboard")
 @is_logged_in
 def dashboard():
-    return render_template('dashboard.html', session=session)
+    blockchain = get_blockchain().chain
+    ct = time.strftime("%I:%M %p")
+    return render_template('dashboard.html', session=session, ct=ct, blockchain=blockchain, page=dashboard)
 
 if __name__ == '__main__':
     app.secret_key = 'secret_key'
