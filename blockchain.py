@@ -1,10 +1,14 @@
 from hashlib import sha256
 
 def updatehash(*args):
+    hashing_text = ""; h=sha256()
     for arg in args:
-        print(arg)
+        hashing_text += str(arg)
 
-updatehash("hello", "two", 5)
+    h.update(hashing_text.encode('utf-8'))
+    return h.hexdigest()
+
+print(updatehash("hello world", "hello"))
 
 class Block():
     data = None
@@ -15,6 +19,9 @@ class Block():
     def __init__(self, data, number=0):
         self.data = data
         self.number = number
+
+    def hash(self):
+        return updatehash(self.previous_hash, self.number, self.data, self.nonce)
 
 
 class Blockchain():
