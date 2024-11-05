@@ -62,6 +62,15 @@ class Blockchain:
                 break
             else:
                 block.nonce += 1
+    
+    def isValid(self):
+        for i in range(1, len(self.chain)):
+            _previous = self.chain[i].previous_hash
+            _current = self.chain[i-1].hash()
+            if _previous != _current or _current[:self.difficulty] != "0"*self.difficulty:
+                return False
+        
+        return True
 
 def main():
     blockchain = Blockchain()
@@ -74,6 +83,10 @@ def main():
 
     for block in blockchain.chain:
         print(block)
+
+    blockchain.chain[2].data = "NEW DATA"
+    blockchain.mine(blockchain.chain[2])
+    print(blockchain.isValid())
 
 if __name__ == '__main__':
     main()
