@@ -37,7 +37,7 @@ class Block():
                     )
 
 class Blockchain():
-    difficulty = 4
+    difficulty = 5
 
     def __init__(self,chain=[]):
         self.chain = chain
@@ -58,7 +58,7 @@ class Blockchain():
             pass
 
         while True:
-            if block.hash()[:4] == "0" * self.difficulty:
+            if block.hash()[:self.difficulty] == "0" * self.difficulty:
                 self.add(block); break
             else:
                 block.nonce += 1
