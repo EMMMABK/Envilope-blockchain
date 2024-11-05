@@ -7,5 +7,14 @@
 </head>
 <body>
     <h1 class="Dashboard">Welcome, {{ session.get('name') }}</h1>
+
+    <table>
+        {% for block in blockchain %}
+        <tr>{{ block.number }}</tr>
+        <tr>{{ block.data }}</tr>
+        <tr>{{ block.hash() }}</tr>
+        {% endfor %}
+    </table>
+    <p>last updated at {{ ct }}</p>
 </body>
 </html>
